@@ -6,7 +6,7 @@ import './layout.css'
 function Layout ({children}) {
 
     return (
-        <div>
+        <div className="height-full">
             <nav className="main-nav">
                 <Link to="/">
                     <img src={logo} className="main-nav-logo-image" alt="Logo de Argent-Bank"/>
@@ -19,7 +19,7 @@ function Layout ({children}) {
                 </div>
             </nav>
 
-        <main>{children}</main>
+        <main className="height-main">{children}</main>
 
         <footer className="footer">
             <p className="footer-text">Copyright 2020 Argent Bank</p>

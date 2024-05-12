@@ -1,13 +1,9 @@
-div {
-    height: 100%;
+.main {
+  flex: 1;
 }
 
-html {
-    height: 100%;
-}
-
-body {
-    height: 100%;
+.height-main {
+  height: 88.7%;
 }
 
 .main-nav {
