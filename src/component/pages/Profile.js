@@ -1,6 +1,9 @@
 import Layout from "../layout/layout";
+// import { useSelector } from "react-redux";
 
 function Profile() {
+    // const token = useSelector(state => state.auth.token);
+
     return (
         <div className="height-full">
             <Layout>
