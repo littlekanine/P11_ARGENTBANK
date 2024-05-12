@@ -11,6 +11,7 @@ function Login () {
                         <i className="fa fa-user-circle sign-in-icon"></i>
                         <h1>Sign In</h1>
                         <Form />
+                        <p className="text-wrong none" id="wrong">The username or password is incorrect</p>
                     </section>
                 </div>
             </Layout>

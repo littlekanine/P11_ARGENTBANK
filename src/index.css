@@ -41,6 +41,10 @@ html {
   height: 100%;
 }
 
+.none {
+  display: none;
+}
+
 /* Home CSS */
 
 .hero {
@@ -278,4 +282,25 @@ html {
   .transaction-button {
     width: 200px;
   }
+}
+
+.no-bullets {
+  list-style-type: none;
+}
+
+.nav-link {
+  gap: 20px;
+}
+
+.wrong {
+  border : 2px solid red
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+.text-wrong {
+  font-size: 10px;
+  color: grey;
 }

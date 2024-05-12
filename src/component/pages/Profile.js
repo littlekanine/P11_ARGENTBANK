@@ -5,7 +5,7 @@ function Profile() {
     // const token = useSelector(state => state.auth.token);
 
     return (
-        <div className="height-full">
+        <div>
             <Layout>
                 <div className="bg-dark flex column align-center height-full">
                     <div className="header">

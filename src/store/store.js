@@ -13,4 +13,6 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
+console.log('Token from localStorage:', sessionStorage.getItem('token'));
+
 export default store;
