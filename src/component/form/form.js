@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { storeToken } from '../../action/actionTypes';
+import { STORE_TOKEN } from '../../action/actionTypes';
 import { useNavigate } from 'react-router-dom';
 
 function Form () {
-    // const [apiResponse, setApiResponse] = useState(null);
-    // const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -38,17 +36,21 @@ function Form () {
             });
         if (response.status === 200) {
             const data = await response.json();
-            dispatch(storeToken(data));
+            dispatch(STORE_TOKEN (data));
             navigate('/profile');
             console.log(data)
         } else {
-            console.log(email, password)
+            const wrongUserName = document.getElementById("username")
+            wrongUserName.classList.add("wrong")
+            const wrongPassword = document.getElementById("password")
+            wrongPassword.classList.add("wrong")
+            const wrong = document.getElementById("wrong")
+            wrong.classList.remove("none")
             }
         } catch (error) {
             console.error('Erreur lors de la requête API :', error);
         }   
-    };
-    
+    };  
 
     return (
             <form onSubmit={handleSubmit}>
