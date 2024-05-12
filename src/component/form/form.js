@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { storeToken } from '../../action/actionTypes';
-import Profile from "../pages/Profile";
+import { useNavigate } from 'react-router-dom';
 
 function Form () {
-    const [apiResponse, setApiResponse] = useState(null);
+    // const [apiResponse, setApiResponse] = useState(null);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleUsernameChange = (event) => {
         setEmail(event.target.value);
@@ -37,7 +39,7 @@ function Form () {
         if (response.status === 200) {
             const data = await response.json();
             dispatch(storeToken(data));
-            setApiResponse(data);
+            navigate('/profile');
             console.log(data)
         } else {
             console.log(email, password)
@@ -49,10 +51,6 @@ function Form () {
     
 
     return (
-        <div>
-            {apiResponse ? (
-                <Profile data={apiResponse} />
-            ) : (
             <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
                     <label for="username">Username</label>
@@ -64,8 +62,6 @@ function Form () {
                 </div>
                 <button className="sign-in-button">Sign In</button>
             </form>
-            )}
-        </div>
     )
 }
 
