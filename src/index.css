@@ -292,6 +292,14 @@ html {
   gap: 20px;
 }
 
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
 .wrong {
   border : 2px solid red
 }
