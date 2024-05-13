@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { STORE_TOKEN } from '../../action/actionTypes';
+import { storeToken, setUser } from '../../feature/user.slice';
 import { useNavigate } from 'react-router-dom';
 
 function Form () {
@@ -8,6 +8,8 @@ function Form () {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
 
     const handleUsernameChange = (event) => {
         setEmail(event.target.value);
@@ -17,28 +19,20 @@ function Form () {
         setPassword(event.target.value);
       };
 
-      const handleSubmit = async (event) => {
-        event.preventDefault();
-    
-        const formData = {
-            email,
-            password,
-        };
-    
+    const fetchToken = async () => {
         try {
-            const apiUrl = 'http://localhost:3001/api/v1/user/login'
-            const response = await fetch(apiUrl, {
-              method: 'POST', 
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(formData) 
-            });
+          const response = await fetch("http://localhost:3001/api/v1/user/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: usernameInput.value,
+              password: passwordInput.value,
+            }),
+        });
         if (response.status === 200) {
             const data = await response.json();
-            dispatch(STORE_TOKEN (data));
             navigate('/profile');
-            console.log(data)
+            return data.body.token;           
         } else {
             const wrongUserName = document.getElementById("username")
             wrongUserName.classList.add("wrong")
@@ -50,14 +44,39 @@ function Form () {
         } catch (error) {
             console.error('Erreur lors de la requête API :', error);
         }   
-    };  
+    }; 
+    
+    const fetchUserDatas = async (token) => {
+        try {
+            const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+            });
+            const data = await response.json();
+            console.log(data)
+            return data.body; 
+        } catch (error) {
+            console.error("Erreur lors de la récupération des données de l'utilisateur :", error);
+        }
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const token = await fetchToken();
+        dispatch(storeToken(token));
+        const userDatas = await fetchUserDatas(token);
+        dispatch(setUser(userDatas));
+    }
 
     return (
             <form onSubmit={handleSubmit}>
                 <div className="input-wrapper">
                     <label for="username">Username</label>
-                    <input type="text" id="username" value={email} onChange={handleUsernameChange} />
-                </div>
+                    <input type="text" id="username" value={email} onChange={handleUsernameChange} />                
+                    </div>
                 <div className="input-wrapper">
                     <label for="password">Password</label>
                     <input type="password" id="password" value={password} onChange={handlePasswordChange} />
@@ -66,5 +85,6 @@ function Form () {
             </form>
     )
 }
+
 
 export default Form

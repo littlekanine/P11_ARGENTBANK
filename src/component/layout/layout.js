@@ -2,17 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/argentBankLogo.png"
 import './layout.css'
 import { useSelector } from "react-redux";
-import { logout } from "../../action/action";
+import { logout } from '../../feature/user.slice';
 import { useDispatch } from 'react-redux';
 
 
 function Layout ({children}) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const token =  useSelector(state => state.auth.token);
+    const token =  useSelector(state => state.user.token);
+    // const user = useSelector((state) => state.user)
     const handleLogout = () => {
         dispatch(logout());
-      navigate('/login');
+        navigate('/login');
     };
 
     return (
@@ -25,11 +26,11 @@ function Layout ({children}) {
                      <div className="flex nav-link align-center">
                         <div className="flex align-center">
                         <i className="fa fa-user-circle"></i>
-                        <li className="no-bullets"><Link to="/profile" className="">Profil</Link></li>
+                        <li className="no-bullets"><Link to="/profile" className="link">Pierrick</Link></li>
                         </div>
                         <div className="flex align-center">
                             <i className="fa-solid fa-right-from-bracket"></i>
-                            <li className="no-bullets"><Link to="/" onClick={handleLogout}>Déconnexion</Link></li>
+                            <li className="no-bullets"><Link to="/" className="link"onClick={handleLogout}>Déconnexion</Link></li>
                         </div>
                    </div>
                  ) : (

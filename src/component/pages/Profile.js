@@ -1,15 +1,16 @@
 import Layout from "../layout/layout";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Profile() {
-    // const token = useSelector(state => state.auth.token);
+    const user = useSelector((state) => state.user);
+    console.log(sessionStorage)
 
     return (
-        <div>
+        <div className="height-full">
             <Layout>
                 <div className="bg-dark flex column align-center height-full">
-                    <div className="header">
-                        <h1>Welcome back<br />Tony Jarvis!</h1>
+                    <div className="flex column center align-center header">
+                        <h1>Welcome back<br />{user.firstName} {user.lastName}!</h1>
                         <button className="edit-button">Edit Name</button>
                     </div>
                     <h2 className="sr-only">Accounts</h2>

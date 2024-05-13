@@ -10,7 +10,7 @@ function Login () {
                     <section className="sign-in-content flex column center align-center">
                         <i className="fa fa-user-circle sign-in-icon"></i>
                         <h1>Sign In</h1>
-                        <Form />
+                            <Form />
                         <p className="text-wrong none" id="wrong">The username or password is incorrect</p>
                     </section>
                 </div>
