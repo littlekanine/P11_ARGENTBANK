@@ -1,90 +1,60 @@
-import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { storeToken, setUser } from '../../feature/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { loginUser, usersData } from '../../feature/userAction';
 
-function Form () {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const usernameInput = document.getElementById("username");
-    const passwordInput = document.getElementById("password");
+function Form() {
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-    const handleUsernameChange = (event) => {
-        setEmail(event.target.value);
-      };
-    
-      const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-      };
+	const handleUsernameChange = (e) => {
+		setUsername(e.target.value);
+	};
 
-    const fetchToken = async () => {
-        try {
-          const response = await fetch("http://localhost:3001/api/v1/user/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              email: usernameInput.value,
-              password: passwordInput.value,
-            }),
-        });
-        if (response.status === 200) {
-            const data = await response.json();
-            navigate('/profile');
-            return data.body.token;           
-        } else {
-            const wrongUserName = document.getElementById("username")
-            wrongUserName.classList.add("wrong")
-            const wrongPassword = document.getElementById("password")
-            wrongPassword.classList.add("wrong")
-            const wrong = document.getElementById("wrong")
-            wrong.classList.remove("none")
-            }
-        } catch (error) {
-            console.error('Erreur lors de la requête API :', error);
-        }   
-    }; 
-    
-    const fetchUserDatas = async (token) => {
-        try {
-            const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-            });
-            const data = await response.json();
-            console.log(data)
-            return data.body; 
-        } catch (error) {
-            console.error("Erreur lors de la récupération des données de l'utilisateur :", error);
-        }
-    };
+	const handlePasswordChange = (e) => {
+		setPassword(e.target.value);
+	};
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const token = await fetchToken();
-        dispatch(storeToken(token));
-        const userDatas = await fetchUserDatas(token);
-        dispatch(setUser(userDatas));
-    }
+	const handleLogin = async (e) => {
+		e.preventDefault();
+		try {
+			const token = await loginUser(username, password);
+			if (!token) {
+				const wrongUserName = document.getElementById('username');
+				wrongUserName.classList.add('wrong');
+				const wrongPassword = document.getElementById('password');
+				wrongPassword.classList.add('wrong');
+				const wrong = document.getElementById('wrong');
+				wrong.classList.remove('none');
+				return;
+			}
+			if (token) {
+				navigate('/profile');
+				dispatch(storeToken(token));
+				console.log(token);
+				await usersData(token);
+			}
+		} catch (error) {
+			console.error('Erreur lors de la connexion :', error);
+		}
+	};
 
-    return (
-            <form onSubmit={handleSubmit}>
-                <div className="input-wrapper">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" value={email} onChange={handleUsernameChange} />                
-                    </div>
-                <div className="input-wrapper">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" value={password} onChange={handlePasswordChange} />
-                </div>
-                <button className="sign-in-button">Sign In</button>
-            </form>
-    )
+	return (
+		<form onSubmit={handleLogin}>
+			<div className="input-wrapper">
+				<label for="username">Username</label>
+				<input type="text" id="username" value={username} onChange={handleUsernameChange} />
+			</div>
+			<div className="input-wrapper">
+				<label for="password">Password</label>
+				<input type="password" id="password" value={password} onChange={handlePasswordChange} />
+			</div>
+			<button className="sign-in-button">Sign In</button>
+		</form>
+	);
 }
 
-
-export default Form
+export default Form;

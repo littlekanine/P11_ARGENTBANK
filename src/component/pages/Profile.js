@@ -1,53 +1,70 @@
-import Layout from "../layout/layout";
-import { useSelector } from "react-redux";
+import Layout from '../layout/layout';
+import UsernameForm from '../form/UsernameForm';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 function Profile() {
-    const user = useSelector((state) => state.user);
-    console.log(sessionStorage)
+	const user = useSelector((state) => state.user);
+	const [isEditing, setIsEditing] = useState(false);
+	const handleEditClick = () => {
+		setIsEditing(true);
+	};
 
-    return (
-        <div className="height-full">
-            <Layout>
-                <div className="bg-dark flex column align-center height-full">
-                    <div className="flex column center align-center header">
-                        <h1>Welcome back<br />{user.firstName} {user.lastName}!</h1>
-                        <button className="edit-button">Edit Name</button>
-                    </div>
-                    <h2 className="sr-only">Accounts</h2>
-                    <section className="account">
-                        <div className="account-content-wrapper">
-                            <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-                            <p className="account-amount">$2,082.79</p>
-                            <p className="account-amount-description">Available Balance</p>
-                        </div>
-                        <div className="account-content-wrapper cta">
-                            <button className="transaction-button">View transactions</button>
-                        </div>
-                    </section>
-                    <section className="account">
-                        <div className="account-content-wrapper">
-                            <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-                            <p className="account-amount">$10,928.42</p>
-                            <p className="account-amount-description">Available Balance</p>
-                        </div>
-                        <div className="account-content-wrapper cta">
-                            <button className="transaction-button">View transactions</button>
-                        </div>
-                    </section>
-                    <section className="account">
-                        <div className="account-content-wrapper">
-                            <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-                            <p className="account-amount">$184.30</p>
-                            <p className="account-amount-description">Current Balance</p>
-                        </div>
-                        <div className="account-content-wrapper cta">
-                            <button className="transaction-button">View transactions</button>
-                        </div>
-                    </section>
-                </div>
-            </Layout>
-        </div>
-    );
+	return (
+		<div className="height-full">
+			<Layout>
+				<div className="bg-dark flex column align-center height-full">
+					<div className="flex column center align-center header">
+						<h1>
+							Welcome back
+							<br />
+							{user.userName}!
+						</h1>
+						{isEditing ? (
+							<UsernameForm />
+						) : (
+							<>
+								<button onClick={handleEditClick} className="edit-button">
+									Edit Username
+								</button>
+							</>
+						)}
+					</div>
+					<h2 className="sr-only">Accounts</h2>
+					<section className="account">
+						<div className="account-content-wrapper">
+							<h3 className="account-title">Argent Bank Checking (x8349)</h3>
+							<p className="account-amount">$2,082.79</p>
+							<p className="account-amount-description">Available Balance</p>
+						</div>
+						<div className="account-content-wrapper cta">
+							<button className="transaction-button">View transactions</button>
+						</div>
+					</section>
+					<section className="account">
+						<div className="account-content-wrapper">
+							<h3 className="account-title">Argent Bank Savings (x6712)</h3>
+							<p className="account-amount">$10,928.42</p>
+							<p className="account-amount-description">Available Balance</p>
+						</div>
+						<div className="account-content-wrapper cta">
+							<button className="transaction-button">View transactions</button>
+						</div>
+					</section>
+					<section className="account">
+						<div className="account-content-wrapper">
+							<h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
+							<p className="account-amount">$184.30</p>
+							<p className="account-amount-description">Current Balance</p>
+						</div>
+						<div className="account-content-wrapper cta">
+							<button className="transaction-button">View transactions</button>
+						</div>
+					</section>
+				</div>
+			</Layout>
+		</div>
+	);
 }
 
 export default Profile;
