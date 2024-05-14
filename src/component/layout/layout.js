@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/argentBankLogo.png"
 import './layout.css'
 import { useSelector } from "react-redux";
-import { logout } from '../../feature/user.slice';
+import { logout } from '../../feature/userSlice';
 import { useDispatch } from 'react-redux';
 
 

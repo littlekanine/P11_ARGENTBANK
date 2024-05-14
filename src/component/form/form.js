@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { storeToken, setUser } from '../../feature/user.slice';
+import { storeToken, setUser } from '../../feature/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 function Form () {
