@@ -26,7 +26,7 @@ const userSlice = createSlice({
 			state.email = payload.email;
 			state.firstName = payload.firstName;
 			state.lastName = payload.lastName;
-			// state.userName = payload.userName;
+			state.userName = payload.userName;
 		},
 	},
 });

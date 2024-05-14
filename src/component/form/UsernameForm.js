@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-// import { editUsername } from '../../feature/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+// import {setUser} from '../../feature/userSlice'
 import { userName } from '../../feature/userAction';
 import '../../index.css';
 
-function UsernameForm() {
+function UsernameForm({onUsernameChange}) {
 	const user = useSelector((state) => state.user);
+	// const dispatch = useDispatch ()
 	const [username, setUsername] = useState(user.userName);
 	const [isEditing, setIsEditing] = useState(true);
 
@@ -21,6 +22,7 @@ function UsernameForm() {
 		e.preventDefault();
 		try {
 			await userName(user.token, username);
+			onUsernameChange(username)
 		} catch (error) {
 			console.error("Erreur lors de la soumission du nom d'utilisateur :", error);
 		}

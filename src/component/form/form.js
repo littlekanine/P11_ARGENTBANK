@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { storeToken, setUser } from '../../feature/userSlice';
+import { storeToken } from '../../feature/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { loginUser, usersData } from '../../feature/userAction';
 
