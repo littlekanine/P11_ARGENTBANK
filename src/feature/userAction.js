@@ -50,10 +50,8 @@ export const userName = async (token, username) => {
 			}),
 		});
 		if (response.status === 200) {
-			// Mettre à jour le nom d'utilisateur dans Redux
-			// dispatch(editUsername(username));
 			console.log(response);
-			// console.log(user.token);
+			console.log(username);
 		} else {
 			console.log("Erreur lors de la soumission du nom d'utilisateur");
 		}

@@ -1,19 +1,27 @@
 import Layout from '../layout/layout';
 import UsernameForm from '../form/UsernameForm';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { setUser, editUsername } from '../../feature/userSlice'
 
 function Profile() {
 	const user = useSelector((state) => state.user);
+	const dispatch =useDispatch()
 	const [isEditing, setIsEditing] = useState(false);
+	
 	const handleEditClick = () => {
 		setIsEditing(true);
 	};
 
+	const handleUsernameChange = (newUsername) => {
+        dispatch(setUser(newUsername)); // Mettre à jour le nom d'utilisateur dans le store Redux
+        setIsEditing(false); // Masquer le formulaire de modification du nom d'utilisateur
+    };
+
 	return (
 		<div className="height-full">
 			<Layout>
-				<div className="bg-dark flex column align-center height-full">
+				<div className="bg-dark flex column align-center">
 					<div className="flex column center align-center header">
 						<h1>
 							Welcome back
@@ -21,7 +29,7 @@ function Profile() {
 							{user.userName}!
 						</h1>
 						{isEditing ? (
-							<UsernameForm />
+							<UsernameForm onUsernameChange={handleUsernameChange} />
 						) : (
 							<>
 								<button onClick={handleEditClick} className="edit-button">
