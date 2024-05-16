@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { storeToken } from '../../feature/userSlice';
+import { setUser, storeToken } from '../../feature/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { loginUser, usersData } from '../../feature/userAction';
 
@@ -35,7 +35,8 @@ function Form() {
 				navigate('/profile');
 				dispatch(storeToken(token));
 				console.log(token);
-				await usersData(token);
+				const userData = await usersData(token);
+				dispatch(setUser(userData));
 			}
 		} catch (error) {
 			console.error('Erreur lors de la connexion :', error);
@@ -45,11 +46,11 @@ function Form() {
 	return (
 		<form onSubmit={handleLogin}>
 			<div className="input-wrapper">
-				<label for="username">Username</label>
+				<label htmlFor="username">Username</label>
 				<input type="text" id="username" value={username} onChange={handleUsernameChange} />
 			</div>
 			<div className="input-wrapper">
-				<label for="password">Password</label>
+				<label htmlFor="password">Password</label>
 				<input type="password" id="password" value={password} onChange={handlePasswordChange} />
 			</div>
 			<button className="sign-in-button">Sign In</button>

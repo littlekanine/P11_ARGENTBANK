@@ -10,7 +10,7 @@ export const loginUser = async (userName, password) => {
 		});
 		if (response.status === 200) {
 			const data = await response.json();
-			console.log(data);
+			console.log(data.body.token);
 			return data.body.token;
 		} else {
 			return false;
@@ -21,6 +21,7 @@ export const loginUser = async (userName, password) => {
 };
 
 export const usersData = async (token) => {
+	console.log(token);
 	try {
 		const response = await fetch('http://localhost:3001/api/v1/user/profile', {
 			method: 'POST',
