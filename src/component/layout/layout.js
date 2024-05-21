@@ -50,7 +50,7 @@ function Layout({ children }) {
 				)}
 			</nav>
 
-			<main className="height-main">{children}</main>
+			<main className='height-full'>{children}</main>
 
 			<footer className="footer">
 				<p className="footer-text">Copyright 2020 Argent Bank</p>

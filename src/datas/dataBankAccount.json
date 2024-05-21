@@ -1,0 +1,71 @@
+[
+    {
+      "email": "tony@stark.com",
+      "accounts": [
+        {
+          "accountID": "891043207561",
+          "type": "Checking",
+          "balance": "2,082.79",
+          "description": "Available Balance"
+        },
+        {
+          "accountID": "542897631094",
+          "type": "Savings",
+          "balance": "10,928.42",
+          "description": "Available Balance"
+        },
+        {
+          "accountID": "736109285432",
+          "type": "Credit Card",
+          "balance": "184.30",
+          "description": "Current Balance"
+        }
+      ]
+    },
+    {
+      "email": "steve@rogers.com",
+      "accounts": [
+        {
+          "accountID": "215349870621",
+          "type": "Checking",
+          "balance": "3,728.50",
+          "description": "Available Balance"
+        },
+        {
+          "accountID": "670923185432",
+          "type": "Savings",
+          "balance": "15,492.63",
+          "description": "Available Balance"
+        },
+        {
+          "accountID": "459870126354",
+          "type": "Credit Card",
+          "balance": "235.10",
+          "description": "Current Balance"
+        }
+      ]
+    },
+    {
+      "email": "elia@kopff.fr",
+      "accounts": [
+        {
+          "accountID": "215349870168",
+          "type": "Checking",
+          "balance": "3,728.50",
+          "description": "Available Balance"
+        },
+        {
+          "accountID": "670923182405",
+          "type": "Savings",
+          "balance": "15,492.63",
+          "description": "Available Balance"
+        },
+        {
+          "accountID": "459870121509",
+          "type": "Credit Card",
+          "balance": "235.10",
+          "description": "Current Balance"
+        }
+      ]
+    }
+  ]

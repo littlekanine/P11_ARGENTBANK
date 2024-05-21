@@ -12,6 +12,10 @@ function Login () {
                         <h1>Sign In</h1>
                             <Form />
                         <p className="text-wrong none" id="wrong">The username or password is incorrect</p>
+                        <div className="flex row center">
+                            <input type="checkbox"></input> 
+                            <p>Remember me</p>
+                        </div>
                     </section>
                 </div>
             </Layout>
