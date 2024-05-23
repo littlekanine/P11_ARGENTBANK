@@ -34,7 +34,6 @@ function Form() {
 			if (token) {
 				navigate('/profile');
 				dispatch(storeToken(token));
-				console.log(token);
 				const userData = await usersData(token);
 				dispatch(setUser(userData));
 			}

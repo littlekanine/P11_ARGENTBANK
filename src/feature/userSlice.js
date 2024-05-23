@@ -17,7 +17,6 @@ const userSlice = createSlice({
 		logout: (state) => {
 			state.token = null;
 			state.userData = null;
-			sessionStorage.removeItem('token');
 		},
 		editUsername: (state, { payload }) => {
 			state.username = payload;

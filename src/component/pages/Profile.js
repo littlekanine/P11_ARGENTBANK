@@ -16,6 +16,7 @@ function Profile() {
 	const handleUsernameChange = () => {
 		setIsEditing(false);
 	};
+	const userAccountData = dataBankAccount.find((data) => data.email === user.email);
 	return (
 		<div>
 			<Layout>
@@ -43,11 +44,13 @@ function Profile() {
 						)}
 					</div>
 					<h2 className="sr-only">Accounts</h2>
-						{dataBankAccount
-							.filter((data) => data.email === user.email)[0]
-							.accounts.map((item, index) => (
+					{userAccountData ? (
+						userAccountData.accounts.map((item, index) => (
 							<Account key={index} item={item} />
-							))}
+						))
+						) : (
+						<p>No accounts found for this user.</p>
+						)}
 				</div>
 			</Layout>
 		</div>
