@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../../feature/userSlice';
-import { userName } from '../../feature/userAction';
+import { userName } from '../../feature/UserActions';
 import '../../index.css';
 
 function UsernameForm({ onUsernameChange }) {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser, storeToken } from '../../feature/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { loginUser, usersData } from '../../feature/userAction';
+import { loginUser, usersData } from '../../feature/UserActions';
 
 function Form() {
 	const [username, setUsername] = useState('');

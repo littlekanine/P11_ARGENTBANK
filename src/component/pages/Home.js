@@ -1,6 +1,6 @@
-import Layout from "../layout/layout";
+import Layout from "../layout/Layout";
 import '../../index.css'
-import HerroBanner from "../heroBanner/herroBanner";
+import HerroBanner from "../herroBanner/HerroBanner";
 import iconChat from "../../assets/img/icon-chat.png"
 import iconMoney from "../../assets/img/icon-money.png"
 import iconSecurity from "../../assets/img/icon-security.png"

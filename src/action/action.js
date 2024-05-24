@@ -1,5 +1,5 @@
-import { STORE_TOKEN } from './actionTypes';
-import { LOGOUT } from './actionTypes';
+import { STORE_TOKEN } from './ActionTypes';
+import { LOGOUT } from './ActionTypes';
 
 export const storeToken = (token) => {
   return {
@@ -11,3 +11,4 @@ export const storeToken = (token) => {
 export const logout = () => ({
     type: LOGOUT
   });
+  

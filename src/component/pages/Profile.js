@@ -1,6 +1,6 @@
-import Layout from '../layout/layout';
+import Layout from '../layout/Layout';
 import UsernameForm from '../form/UsernameForm';
-import Account from '../account/account';
+import Account from '../account/Accounts';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import dataBankAccount from '../../datas/dataBankAccount.json'

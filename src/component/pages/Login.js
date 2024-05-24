@@ -1,5 +1,5 @@
-import Layout from "../layout/layout";
-import Form from "../form/form";
+import Layout from "../layout/Layout";
+import Form from "../form/Form";
 import '../../index.css'
 
 function Login () {
