@@ -9,7 +9,7 @@ function Layout({ children }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const token = useSelector((state) => state.user.token);
-	// const user = useSelector((state) => state.user)
+	const user = useSelector((state) => state.user);
 	const handleLogout = () => {
 		dispatch(logout());
 		navigate('/login');
@@ -27,7 +27,7 @@ function Layout({ children }) {
 							<i className="fa fa-user-circle"></i>
 							<li className="no-bullets">
 								<Link to="/profile" className="link">
-									Pierrick
+									{!user.username ? <>{user.firstName} </> : <>{user.username} </>}
 								</Link>
 							</li>
 						</div>
@@ -50,7 +50,7 @@ function Layout({ children }) {
 				)}
 			</nav>
 
-			<main className="height-main">{children}</main>
+			<main className='height-full'>{children}</main>
 
 			<footer className="footer">
 				<p className="footer-text">Copyright 2020 Argent Bank</p>

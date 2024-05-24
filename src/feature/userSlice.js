@@ -5,7 +5,7 @@ const initialState = {
 	userData: null,
 	firstName: '',
 	lastName: '',
-	userName: '',
+	username: '',
 };
 const userSlice = createSlice({
 	name: 'user',
@@ -17,19 +17,17 @@ const userSlice = createSlice({
 		logout: (state) => {
 			state.token = null;
 			state.userData = null;
-			sessionStorage.removeItem('token');
 		},
 		editUsername: (state, { payload }) => {
-			state.userName = payload;
+			state.username = payload;
 		},
 		setUser: (state, { payload }) => {
 			state.email = payload.email;
 			state.firstName = payload.firstName;
 			state.lastName = payload.lastName;
-			state.userName = payload.userName;
+			state.username = payload.userName;
 		},
 	},
 });
-
 export const { storeToken, logout, setUser, editUsername } = userSlice.actions;
 export default userSlice.reducer;
