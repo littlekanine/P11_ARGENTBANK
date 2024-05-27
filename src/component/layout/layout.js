@@ -23,8 +23,8 @@ function Layout({ children }) {
 				</Link>
 				{token ? (
 					<div className="flex nav-link align-center">
-						<div className="flex align-center">
-							<i className="fa fa-user-circle"></i>
+						<div className="flex center align-center">
+							<i className="fa fa-user-circle icon"></i>
 							<li className="no-bullets">
 								<Link to="/profile" className="link">
 									{!user.username ? <>{user.firstName} </> : <>{user.username} </>}
@@ -32,10 +32,10 @@ function Layout({ children }) {
 							</li>
 						</div>
 						<div className="flex align-center">
-							<i className="fa-solid fa-right-from-bracket"></i>
+							<i className="fa fa-sign-out icon"></i>
 							<li className="no-bullets">
 								<Link to="/" className="link" onClick={handleLogout}>
-									Déconnexion
+									Sign Out
 								</Link>
 							</li>
 						</div>

@@ -1,5 +1,5 @@
 .nav-link {
-	gap: 20px;
+	gap: 10px;
 }
 
 .link {
@@ -8,6 +8,10 @@
 
 .link:hover {
 	text-decoration: underline;
+}
+
+.icon {
+	padding-right: 5px;
 }
 
 .no-bullets {

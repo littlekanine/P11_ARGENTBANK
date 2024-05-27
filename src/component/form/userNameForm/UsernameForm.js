@@ -38,10 +38,10 @@ function UsernameForm({ onUsernameChange }) {
 						<p>User name :</p> <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="form-imput" />
 					</div>
 					<div className="flex row center align-center gap10">
-						<p>First name :</p> <input type="text" value={user.firstName} readonly className="lock form-imput" />
+						<p>First name :</p> <input type="text" defaultValue={user.firstName} readonly className="lock form-imput" />
 					</div>
 					<div className="flex row center align-center gap10">
-						<p>Last name :</p> <input type="text" value={user.lastName} readonly className="lock form-imput" />
+						<p>Last name :</p> <input type="text" defaultValue={user.lastName} readonly className="lock form-imput" />
 					</div>
 					<div className="flex row center gap20">
 						<button type="submit" className="edit-button">
