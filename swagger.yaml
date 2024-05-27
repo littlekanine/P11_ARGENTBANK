@@ -17,11 +17,11 @@ paths:
             description: API for Login
             parameters:
                 - in: body
-                  name: body
-                  description: Login Payload
-                  required: true
-                  schema:
-                      $ref: '#/definitions/Login'
+            name: body
+                description: Login Payload
+                required: true
+                schema:
+                    $ref: '#/definitions/Login'
             produces:
                 - application/json
             responses:
@@ -41,11 +41,11 @@ paths:
             description: API for Signup
             parameters:
                 - in: body
-                  name: body
-                  description: Signup Payload
-                  required: true
-                  schema:
-                      $ref: '#/definitions/User'
+                name: body
+                description: Signup Payload
+                required: true
+                schema:
+                    $ref: '#/definitions/User'
             produces:
                 - application/json
             responses:
@@ -85,11 +85,11 @@ paths:
             description: API for updating a user profile
             parameters:
                 - in: body
-                  name: body
-                  description: Update user profile attributes
-                  required: true
-                  schema:
-                      $ref: '#/definitions/UserProfile'
+                name: body
+                description: Update user profile attributes
+                required: true
+                schema:
+                    $ref: '#/definitions/UserProfile'
             produces:
                 - application/json
             responses:
@@ -105,18 +105,18 @@ paths:
         get:
             security:
                 - Bearer: []
-            tags: 
+            tags:
                 - Money Module
-            summary: Get User Profile Transactions 
+            summary: Get User Profile Transactions
             description: API for retrieving transactions associated with the user's profile
             parameters:
                 - in: body
-                  name: UserID
-                  description: ID of the user
-                  required: true
-                  type: string
-                  schema:
-                        $ref: '#/definitions/TransactionsResponse'
+                name: UserID
+                description: ID of the user
+                required: true
+                type: string
+                schema:
+                    $ref: '#/definitions/TransactionsResponse'
             produces:
                 - application/json
             responses:
@@ -136,11 +136,11 @@ paths:
             description: API for updating the description of a user's account
             parameters:
                 - in: body
-                  name: body
-                  description: Update account description payload
-                  required: true
-                  schema:
-                      $ref: '#/definitions/UpdateAccountDescription'
+                name: body
+                description: Update account description payload
+                required: true
+                schema:
+                    $ref: '#/definitions/UpdateAccountDescription'
             produces:
                 - application/json
             responses:
@@ -150,7 +150,6 @@ paths:
                     description: Invalid Fields
                 '500':
                     description: Internal Server Error
-
 
 securityDefinitions:
     Bearer:
@@ -238,4 +237,3 @@ definitions:
             description:
                 type: string
                 description: New description for the account
-
