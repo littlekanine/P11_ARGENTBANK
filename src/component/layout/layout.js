@@ -16,7 +16,7 @@ function Layout({ children }) {
 	};
 
 	return (
-		<div className="height-full">
+		<div className="height-full flex column">
 			<nav className="main-nav">
 				<Link to="/">
 					<img src={logo} className="main-nav-logo-image" alt="Logo de Argent-Bank" />
@@ -50,7 +50,7 @@ function Layout({ children }) {
 				)}
 			</nav>
 
-			<main className='height-full'>{children}</main>
+			<main className="height-full main ">{children}</main>
 
 			<footer className="footer">
 				<p className="footer-text">Copyright 2020 Argent Bank</p>

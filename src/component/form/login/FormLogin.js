@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUser, storeToken } from '../../feature/userSlice';
-import { useNavigate } from 'react-router-dom';
-import { loginUser, usersData } from '../../feature/UserActions';
+import { setUser, storeToken } from '../../../feature/userSlice';
+import { Form, useNavigate } from 'react-router-dom';
+import { loginUser, usersData } from '../../../feature/UserActions';
+import './formLogin.css';
 
-function Form() {
+function FormLogin() {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const dispatch = useDispatch();
@@ -57,4 +58,4 @@ function Form() {
 	);
 }
 
-export default Form;
+export default FormLogin;

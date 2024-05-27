@@ -1,9 +1,9 @@
 import Layout from '../layout/Layout';
-import UsernameForm from '../form/UsernameForm';
+import UsernameForm from '../form/userNameForm/UsernameForm';
 import Account from '../account/Accounts';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import dataBankAccount from '../../datas/dataBankAccount.json'
+import dataBankAccount from '../../datas/dataBankAccount.json';
 
 function Profile() {
 	const user = useSelector((state) => state.user);
@@ -18,7 +18,7 @@ function Profile() {
 	};
 	const userAccountData = dataBankAccount.find((data) => data.email === user.email);
 	return (
-		<div>
+		<div className="height-full">
 			<Layout>
 				<div className="bg-dark flex column align-center height-full">
 					<div className="flex column center align-center header">
@@ -44,13 +44,7 @@ function Profile() {
 						)}
 					</div>
 					<h2 className="sr-only">Accounts</h2>
-					{userAccountData ? (
-						userAccountData.accounts.map((item, index) => (
-							<Account key={index} item={item} />
-						))
-						) : (
-						<p>No accounts found for this user.</p>
-						)}
+					{userAccountData ? userAccountData.accounts.map((item, index) => <Account key={index} item={item} />) : <p>No accounts found for this user.</p>}
 				</div>
 			</Layout>
 		</div>

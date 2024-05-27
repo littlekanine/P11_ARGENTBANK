@@ -47,10 +47,8 @@ export const userName = async (token, username) => {
 				userName: username,
 			}),
 		});
-		if (response.status === 200) {
-			console.log(response)
-		} else {
-			console.log("Erreur lors de la soumission du nom d'utilisateur");
+		if (!response.ok) {
+			throw new Error(`Erreur HTTP ! statut : ${response.status}`);
 		}
 	} catch {
 		console.log('toujours pas');
