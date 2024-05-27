@@ -1,0 +1,46 @@
+.input-wrapper label {
+	font-weight: bold;
+}
+
+.input-wrapper input {
+	padding: 5px;
+	font-size: 1.2rem;
+	border: solid 1px;
+	border-radius: 5px;
+	color: #423f3f;
+}
+
+.sign-in-button {
+	display: block;
+	width: 100%;
+	padding: 8px;
+	font-size: 1.1rem;
+	font-weight: bold;
+	margin-top: 1rem;
+	border-color: #00bc77;
+	background-color: #00bc77;
+	color: #fff;
+	border: 0px;
+	border-radius: 5px;
+}
+
+.wrong {
+	border: 2px solid red !important;
+}
+
+textarea:focus,
+input:focus {
+	outline: none;
+}
+
+.text-wrong {
+	font-size: 10px;
+	color: grey;
+}
+
+.input-wrapper {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	margin-bottom: 1rem;
+}
