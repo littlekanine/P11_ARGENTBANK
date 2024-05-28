@@ -1,4 +1,4 @@
-import Layout from '../layout/Layout';
+import Layout from '../layout/layout';
 import './pages.css';
 import HerroBanner from '../herroBanner/HerroBanner';
 import iconChat from '../../assets/img/icon-chat.png';

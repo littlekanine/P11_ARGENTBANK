@@ -1,4 +1,4 @@
-import Layout from '../layout/Layout';
+import Layout from '../layout/layout';
 import './pages.css';
 
 function Error() {

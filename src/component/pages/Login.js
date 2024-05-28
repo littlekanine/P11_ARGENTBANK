@@ -1,4 +1,4 @@
-import Layout from '../layout/Layout';
+import Layout from '../layout/layout';
 import Form from '../form/login/FormLogin';
 import '../../index.css';
 import './pages.css';

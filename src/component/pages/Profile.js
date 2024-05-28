@@ -1,4 +1,4 @@
-import Layout from '../layout/Layout';
+import Layout from '../layout/layout';
 import UsernameForm from '../form/userNameForm/UsernameForm';
 import Account from '../account/Accounts';
 import { useSelector } from 'react-redux';

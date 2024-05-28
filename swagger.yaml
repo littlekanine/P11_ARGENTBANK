@@ -4,10 +4,8 @@ info:
     description: Contains all available API endpoints in this codebase
     version: '1.0.0'
     termsOfService: 'http://swagger.io/terms/'
-host: localhost:3001
-basePath: /api/v1
-schemes:
-    - http
+servers:
+    - url: http://localhost:3001/api/v1
 paths:
     /user/login:
         post:
@@ -15,20 +13,19 @@ paths:
                 - User Module
             summary: Login
             description: API for Login
-            parameters:
-                - in: body
-            name: body
-                description: Login Payload
+            requestBody:
                 required: true
-                schema:
-                    $ref: '#/definitions/Login'
-            produces:
-                - application/json
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Login'
             responses:
                 '200':
                     description: Login Successfully
-                    schema:
-                        $ref: '#/definitions/LoginResponse'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/LoginResponse'
                 '400':
                     description: Invalid Fields
                 '500':
@@ -39,20 +36,19 @@ paths:
                 - User Module
             summary: Signup
             description: API for Signup
-            parameters:
-                - in: body
-                name: body
-                description: Signup Payload
+            requestBody:
                 required: true
-                schema:
-                    $ref: '#/definitions/User'
-            produces:
-                - application/json
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/User'
             responses:
                 '200':
                     description: Signup Successfully
-                    schema:
-                        $ref: '#/definitions/ApiResponse'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApiResponse'
                 '400':
                     description: Invalid Fields
                 '500':
@@ -65,13 +61,13 @@ paths:
                 - User Module
             summary: User Profile API
             description: API for fetching a user profile
-            #produces:
-            # - application/json
             responses:
                 '200':
                     description: User profile retrieved successfully
-                    schema:
-                        $ref: '#/definitions/ApiResponse'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApiResponse'
                 '400':
                     description: Invalid Fields
                 '500':
@@ -83,20 +79,19 @@ paths:
                 - User Module
             summary: User Profile API
             description: API for updating a user profile
-            parameters:
-                - in: body
-                name: body
-                description: Update user profile attributes
+            requestBody:
                 required: true
-                schema:
-                    $ref: '#/definitions/UserProfile'
-            produces:
-                - application/json
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UserProfile'
             responses:
                 '200':
                     description: User profile updated successfully
-                    schema:
-                        $ref: '#/definitions/ApiResponse'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApiResponse'
                 '400':
                     description: Invalid Fields
                 '500':
@@ -110,23 +105,24 @@ paths:
             summary: Get User Profile Transactions
             description: API for retrieving transactions associated with the user's profile
             parameters:
-                - in: body
-                name: UserID
-                description: ID of the user
-                required: true
-                type: string
-                schema:
-                    $ref: '#/definitions/TransactionsResponse'
-            produces:
-                - application/json
+                - in: query
+                  name: UserID
+                  description: ID of the user
+                  required: true
+                  schema:
+                      type: string
             responses:
                 '200':
                     description: Transactions retrieved successfully
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/TransactionsResponse'
                 '400':
                     description: Invalid Fields or Incorrect UserID
                 '500':
                     description: Internal Server Error
-                    /user/account/description:
+    /user/account/description:
         put:
             security:
                 - Bearer: []
@@ -134,15 +130,12 @@ paths:
                 - Money Module
             summary: Update Account Description
             description: API for updating the description of a user's account
-            parameters:
-                - in: body
-                name: body
-                description: Update account description payload
+            requestBody:
                 required: true
-                schema:
-                    $ref: '#/definitions/UpdateAccountDescription'
-            produces:
-                - application/json
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateAccountDescription'
             responses:
                 '200':
                     description: Account description updated successfully
@@ -151,89 +144,90 @@ paths:
                 '500':
                     description: Internal Server Error
 
-securityDefinitions:
-    Bearer:
-        type: apiKey
-        name: Authorization
-        in: header
-
-definitions:
-    User:
-        properties:
-            email:
-                type: string
-                description: user email
-            password:
-                type: string
-                description: user password
-            firstName:
-                type: string
-                description: user first name
-            lastName:
-                type: string
-                description: user last name
-            userName:
-                type: string
-                description: user public name
-    Login:
-        properties:
-            email:
-                type: string
-                description: user email
-            password:
-                type: string
-                description: user password
-    ApiResponse:
-        type: object
-        properties:
-            status:
-                type: integer
-            message:
-                type: string
-            body:
-                type: object
-                properties:
-                    id:
-                        type: string
-                    email:
-                        type: string
-    LoginResponse:
-        type: object
-        properties:
-            token:
-                type: string
-    UserProfile:
-        type: object
-        properties:
-            userName:
-                type: string
-    TransactionsResponse:
-        type: object
-        properties:
-            transactions:
-                type: array
-                items:
-                    $ref: '#/definitions/Transaction'
-    Transaction:
-        type: object
-        properties:
-            transactionId:
-                type: string
-            accountId:
-                type: string
-            amount:
-                type: number
-            date:
-                type: string
-                format: date-time
-            description:
-                type: string
-            category:
-                type: string
-                definitions:
-    UpdateAccountDescription:
-        type: object
-        properties:
-            description:
-                type: string
-                description: New description for the account
+components:
+    securitySchemes:
+        Bearer:
+            type: apiKey
+            name: Authorization
+            in: header
+    schemas:
+        User:
+            type: object
+            properties:
+                email:
+                    type: string
+                    description: user email
+                password:
+                    type: string
+                    description: user password
+                firstName:
+                    type: string
+                    description: user first name
+                lastName:
+                    type: string
+                    description: user last name
+                userName:
+                    type: string
+                    description: user public name
+        Login:
+            type: object
+            properties:
+                email:
+                    type: string
+                    description: user email
+                password:
+                    type: string
+                    description: user password
+        ApiResponse:
+            type: object
+            properties:
+                status:
+                    type: integer
+                message:
+                    type: string
+                body:
+                    type: object
+                    properties:
+                        id:
+                            type: string
+                        email:
+                            type: string
+        LoginResponse:
+            type: object
+            properties:
+                token:
+                    type: string
+        UserProfile:
+            type: object
+            properties:
+                userName:
+                    type: string
+        TransactionsResponse:
+            type: object
+            properties:
+                transactions:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Transaction'
+        Transaction:
+            type: object
+            properties:
+                transactionId:
+                    type: string
+                accountId:
+                    type: string
+                amount:
+                    type: number
+                date:
+                    type: string
+                    format: date-time
+                description:
+                    type: string
+                category:
+                    type: string
+        UpdateAccountDescription:
+            type: object
+            properties:
+                description:
+                    type: string
+                    description: New description for the account
